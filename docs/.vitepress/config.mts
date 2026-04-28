@@ -1,11 +1,10 @@
 import { defineConfig } from 'vitepress'
 import { generateSidebar } from 'vitepress-sidebar'
 
-// https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "我的学习记录",
   description: "记录技术与知识沉淀",
-  cleanUrls: true, // 去掉 .html 后缀
+  cleanUrls: true, // 开启纯净链接，完美修复 404
   themeConfig: {
     // 顶部导航栏
     nav: [
@@ -13,10 +12,10 @@ export default defineConfig({
       { text: '示例', link: '/markdown-examples' }
     ],
 
-    // 👇 魔法核心：全自动生成侧边栏 👇
+    // 👇 重点修改了这里：路径必须指向 docs 文件夹 👇
     sidebar: generateSidebar({
-      documentRootPath: '/',        // 从根目录开始扫描你的所有 markdown 文件
-      useTitleFromFileHeading: true // 自动把文章里的 # 一级标题作为侧边栏名字
+      documentRootPath: '/docs',    // 告诉插件去 docs 目录里找文章
+      useTitleFromFileHeading: true 
     }),
 
     // 右上角的社交链接
